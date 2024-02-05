@@ -1,26 +1,44 @@
+import { useFormik } from "formik";
+// import { temp } from "./Schema/user";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 function Login() {
+  const { values, errors, handleSubmit, handleBlur, handleChange, touched } =
+    useFormik({
+      initialValues: initialValues,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
   return (
     <>
-      <section class="bg-light vh-100 py-5">
+      <section className="bg-light vh-100 py-5">
         <div className="container w-25">
           <div className="row justify-content-center align-content-center">
-            <div class="card border border-light-subtle rounded-3 shadow-sm">
-              <div class="card-body p-xl-5">
+            <div className="card border border-light-subtle rounded-3 shadow-sm">
+              <div className="card-body p-xl-5">
                 <div className="text-secondary mb-4 text-center">
                   Sign in to your account
                 </div>
-                <form action="">
-                  <div class="row gy-2 overflow-hidden">
-                    <div class="col-12">
+                <form onSubmit={handleSubmit}>
+                  <div className="row gy-2 overflow-hidden">
+                    <div className="col-12">
                       <div className="form-floating mb-3">
                         <input
                           className="form-control"
                           type="email"
+                          name="email"
                           placeholder="Enter Your Email"
                           id="email"
-                          required="true"
+                          required={true}
+                          value={values.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
                         />
-                        <label for="email" className="form-label">
+                        <label htmlFor="email" className="form-label">
                           Email
                         </label>
                       </div>
@@ -28,11 +46,15 @@ function Login() {
                         <input
                           className="form-control"
                           type="password"
+                          name="password"
                           placeholder="Enter Your Password"
                           id="password"
-                          required="true"
+                          required={true}
+                          value={values.password}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
                         />
-                        <label for="password" className="form-label">
+                        <label htmlFor="password" className="form-label">
                           Password
                         </label>
                       </div>

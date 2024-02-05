@@ -1,4 +1,19 @@
+import { useFormik } from "formik";
+
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  dob: "",
+};
 function Signup() {
+  const { values, handleBlur, handleSubmit, handleChange, errors } = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <>
       <section className="bg-light vh-100 py-5">
@@ -8,7 +23,7 @@ function Signup() {
               <div className="py-3 text-center text-secondary">
                 create your account
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="row gy-2 overflow-hidden">
                   <div>
                     <div className="form-floating mb-3">
@@ -16,10 +31,14 @@ function Signup() {
                         className="form-control"
                         id="name"
                         type="name"
+                        name="name"
                         placeholder="Enter Your Name"
-                        required="true"
+                        required={true}
+                        value={values.name}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       ></input>
-                      <label for="name" className="form-label">
+                      <label htmlFor="name" className="form-label">
                         username
                       </label>
                     </div>
@@ -28,10 +47,14 @@ function Signup() {
                         className="form-control"
                         type="email"
                         placeholder="Enter Your Email"
+                        name="email"
                         id="email"
-                        required="true"
+                        required={true}
+                        value={values.email}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       />
-                      <label for="email" className="form-label">
+                      <label htmlFor="email" className="form-label">
                         Email
                       </label>
                     </div>
@@ -40,10 +63,14 @@ function Signup() {
                         className="form-control"
                         type="password"
                         placeholder="Enter Your Password"
+                        name="password"
                         id="password"
-                        required="true"
+                        required={true}
+                        value={values.password}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       />
-                      <label for="password" className="form-label">
+                      <label htmlFor="password" className="form-label">
                         Password
                       </label>
                     </div>
@@ -51,11 +78,15 @@ function Signup() {
                       <input
                         className="form-control"
                         type="password"
+                        name="confirmPassword"
                         placeholder="Confirm Password"
-                        id="confirm-password"
-                        required="true"
+                        id="confirmPassword"
+                        required={true}
+                        value={values.confirmPassword}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       />
-                      <label for="confirm-password" className="form-label">
+                      <label htmlFor="confirm-password" className="form-label">
                         Confirm Password
                       </label>
                     </div>
@@ -65,9 +96,13 @@ function Signup() {
                         type="date"
                         placeholder="Enter Your date of birth"
                         id="dob"
-                        required="true"
+                        name="dob"
+                        required={true}
+                        value={values.dob}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                       />
-                      <label for="dob" className="form-label">
+                      <label htmlFor="dob" className="form-label">
                         date of birth
                       </label>
                     </div>
