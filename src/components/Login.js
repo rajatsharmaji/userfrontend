@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-// import { temp } from "./Schema/user";
+import { loginSchema } from "./Schema/user";
 
 const initialValues = {
   email: "",
@@ -9,6 +9,7 @@ function Login() {
   const { values, errors, handleSubmit, handleBlur, handleChange, touched } =
     useFormik({
       initialValues: initialValues,
+      validationSchema: loginSchema,
       onSubmit: (values) => {
         console.log(values);
       },
@@ -33,7 +34,6 @@ function Login() {
                           name="email"
                           placeholder="Enter Your Email"
                           id="email"
-                          required={true}
                           value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -41,6 +41,11 @@ function Login() {
                         <label htmlFor="email" className="form-label">
                           Email
                         </label>
+                        {errors.email && touched.email ? (
+                          <p className="text-danger form-error">
+                            {errors.email}
+                          </p>
+                        ) : null}
                       </div>
                       <div className="form-floating mb-3">
                         <input
@@ -49,7 +54,6 @@ function Login() {
                           name="password"
                           placeholder="Enter Your Password"
                           id="password"
-                          required={true}
                           value={values.password}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -57,9 +61,17 @@ function Login() {
                         <label htmlFor="password" className="form-label">
                           Password
                         </label>
+                        {errors.password && touched.password ? (
+                          <p className="text-danger form-error">
+                            {errors.password}
+                          </p>
+                        ) : null}
                       </div>
                       <div className="row justify-content-center py-1">
-                        <button className="btn btn-outline-primary btn-md">
+                        <button
+                          type="submit"
+                          className="btn btn-outline-primary btn-md"
+                        >
                           Login
                         </button>
                       </div>

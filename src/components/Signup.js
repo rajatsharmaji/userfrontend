@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { signupSchema } from "./Schema/user";
 
 const initialValues = {
   name: "",
@@ -8,12 +9,15 @@ const initialValues = {
   dob: "",
 };
 function Signup() {
-  const { values, handleBlur, handleSubmit, handleChange, errors } = useFormik({
-    initialValues: initialValues,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const { values, errors, handleBlur, handleSubmit, handleChange, touched } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: signupSchema,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
+
   return (
     <>
       <section className="bg-light vh-100 py-5">
@@ -33,7 +37,6 @@ function Signup() {
                         type="name"
                         name="name"
                         placeholder="Enter Your Name"
-                        required={true}
                         value={values.name}
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -41,6 +44,9 @@ function Signup() {
                       <label htmlFor="name" className="form-label">
                         username
                       </label>
+                      {errors.name && touched.name ? (
+                        <p className="text-danger form-error">{errors.name}</p>
+                      ) : null}
                     </div>
                     <div className="form-floating mb-3">
                       <input
@@ -49,14 +55,17 @@ function Signup() {
                         placeholder="Enter Your Email"
                         name="email"
                         id="email"
-                        required={true}
                         value={values.email}
                         onBlur={handleBlur}
                         onChange={handleChange}
                       />
+
                       <label htmlFor="email" className="form-label">
                         Email
                       </label>
+                      {errors.email && touched.email ? (
+                        <p className="text-danger form-error">{errors.email}</p>
+                      ) : null}
                     </div>
                     <div className="form-floating mb-3">
                       <input
@@ -65,7 +74,6 @@ function Signup() {
                         placeholder="Enter Your Password"
                         name="password"
                         id="password"
-                        required={true}
                         value={values.password}
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -73,6 +81,11 @@ function Signup() {
                       <label htmlFor="password" className="form-label">
                         Password
                       </label>
+                      {errors.password && touched.password ? (
+                        <p className="text-danger form-error">
+                          {errors.password}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="form-floating mb-3">
                       <input
@@ -81,7 +94,6 @@ function Signup() {
                         name="confirmPassword"
                         placeholder="Confirm Password"
                         id="confirmPassword"
-                        required={true}
                         value={values.confirmPassword}
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -89,6 +101,11 @@ function Signup() {
                       <label htmlFor="confirm-password" className="form-label">
                         Confirm Password
                       </label>
+                      {errors.confirmPassword && touched.confirmPassword ? (
+                        <p className="text-danger form-error">
+                          {errors.confirmPassword}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="form-floating mb-3">
                       <input
@@ -97,7 +114,6 @@ function Signup() {
                         placeholder="Enter Your date of birth"
                         id="dob"
                         name="dob"
-                        required={true}
                         value={values.dob}
                         onBlur={handleBlur}
                         onChange={handleChange}
@@ -105,6 +121,9 @@ function Signup() {
                       <label htmlFor="dob" className="form-label">
                         date of birth
                       </label>
+                      {errors.dob && touched.dob ? (
+                        <p className="text-danger form-error">{errors.dob}</p>
+                      ) : null}
                     </div>
                     <div className="row py-3">
                       <button type="submit" className="btn btn-outline-primary">
