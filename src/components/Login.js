@@ -1,5 +1,7 @@
 import { useFormik } from "formik";
 import { loginSchema } from "./Schema/user";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const initialValues = {
   email: "",
@@ -10,8 +12,18 @@ function Login() {
     useFormik({
       initialValues: initialValues,
       validationSchema: loginSchema,
-      onSubmit: (values) => {
-        console.log(values);
+      onSubmit: async (values) => {
+        await axios
+          .get("http://localhost:3002/user/login", {
+            params: { email: values.email, password: values.password },
+          })
+          .then((res) => {
+            alert("success");
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       },
     });
   return (
@@ -27,7 +39,7 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                   <div className="row gy-2 overflow-hidden">
                     <div className="col-12">
-                      <div className="form-floating mb-3">
+                      <div className="row form-floating mb-3">
                         <input
                           className="form-control"
                           type="email"
@@ -47,7 +59,7 @@ function Login() {
                           </p>
                         ) : null}
                       </div>
-                      <div className="form-floating mb-3">
+                      <div className="row form-floating mb-3">
                         <input
                           className="form-control"
                           type="password"
@@ -78,12 +90,12 @@ function Login() {
                       <div>
                         <p className="text-secondary pt-4">
                           dont have an account?{" "}
-                          <a
+                          <Link
+                            to="/signup"
                             className="link-primary text-decoration-none px-2"
-                            href="/signup"
                           >
-                            Sign up
-                          </a>
+                            Signup
+                          </Link>
                         </p>
                       </div>
                     </div>
