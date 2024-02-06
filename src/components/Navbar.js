@@ -28,7 +28,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="d-flex flex-row-reverse">
+          <div className="d-none d-lg-block d-flex flex-row-reverse">
             <button className="btn btn-light">
               <Link to="/page" className="text-decoration-none">
                 Create new

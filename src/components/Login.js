@@ -28,8 +28,8 @@ function Login() {
     });
   return (
     <>
-      <section className="bg-light vh-100 py-5">
-        <div className="container w-25">
+      <section className="bg-light py-5">
+        <div className="container" style={{ width: "30rem" }}>
           <div className="row justify-content-center align-content-center">
             <div className="card border border-light-subtle rounded-3 shadow-sm">
               <div className="card-body p-xl-5">

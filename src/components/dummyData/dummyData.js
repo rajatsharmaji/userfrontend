@@ -27,6 +27,60 @@ const pageList = [
     title: "page6",
     comment: "UI tested",
   },
+  {
+    title: "page7",
+    comment: "api tested",
+  },
+
+  {
+    title: "page8",
+    comment: "frontend created",
+  },
+
+  // {
+  //   title: "page9",
+  //   comment: "UI tested",
+  // },
+  // {
+  //   title: "page6",
+  //   comment: "UI tested",
+  // },
+  // {
+  //   title: "page7",
+  //   comment: "api tested",
+  // },
+
+  // {
+  //   title: "page8",
+  //   comment: "frontend created",
+  // },
+
+  // {
+  //   title: "page9",
+  //   comment: "UI tested",
+  // },
+  // {
+  //   title: "page9",
+  //   comment: "UI tested",
+  // },
+  // {
+  //   title: "page6",
+  //   comment: "UI tested",
+  // },
+  // {
+  //   title: "page7",
+  //   comment: "api tested",
+  // },
+
+  // {
+  //   title: "page8",
+  //   comment: "frontend created",
+  // },
+
+  // {
+  //   title: "page9",
+  //   comment: "UI tested",
+  // },
 ];
 
 export default pageList;
